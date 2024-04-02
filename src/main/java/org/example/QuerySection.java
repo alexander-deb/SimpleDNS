@@ -22,13 +22,11 @@ public class QuerySection {
         var currentIndex = this.beginIndex;
         while (data[currentIndex] != 0) {
             var num_of_octets = (int)data[currentIndex];
-//                        System.out.println("Num_of_octets: " + num_of_octets);
             var word = Receiver.getbytes(data, currentIndex +1, currentIndex +num_of_octets);
             this.domainName += new String(Receiver.toByteArray(word), StandardCharsets.UTF_8) + ".";
             currentIndex += num_of_octets + 1;
         }
 
-        System.out.println("domainName: " + this.domainName);
         currentIndex += 1;
         this.QTYPE = Receiver.getbytes(data, currentIndex, currentIndex +1);
         this.QCLASS = Receiver.getbytes(data, currentIndex +2, currentIndex +3);

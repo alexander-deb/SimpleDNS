@@ -10,14 +10,14 @@ import java.util.ArrayList;
 @Setter
 @AllArgsConstructor
 public class Flags {
-    byte QR;
-    byte Opcode;
-    byte AA;
-    byte TC;
-    byte RD;
-    byte RA;
-    byte Z;
-    byte RCODE;
+    private byte QR;
+    private byte Opcode;
+    private byte AA;
+    private byte TC;
+    private byte RD;
+    private byte RA;
+    private byte Z;
+    private byte RCODE;
 
     public Flags(ArrayList<Byte> bytes) {
         if (bytes.size() < 2) {

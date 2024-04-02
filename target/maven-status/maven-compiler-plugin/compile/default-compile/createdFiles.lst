@@ -1,0 +1,7 @@
+org\example\Support.class
+org\example\ConfigParser.class
+org\example\QuerySection.class
+org\example\HeaderSection.class
+org\example\AnswerSection.class
+org\example\Flags.class
+org\example\Receiver.class

@@ -30,19 +30,12 @@ public class Receiver {
             {
                 serverSocket.receive(receivePacket);
                 if (receivePacket.getData().length > 0) {
-                    String sentence = new String( receivePacket.getData(), 6,
-                            receivePacket.getLength() );
-                    for (byte n : receivePacket.getData()) {
-                        System.out.print(Integer.toHexString(n) + " ");
-                    }
-
                     var packetData = receivePacket.getData();
                     var configMap = ConfigParser.getConfigMap("config.txt");
                     ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
                     DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
 
                     HeaderSection headerSection = new HeaderSection(toByteArray(getbytes(packetData, 0, 11)));
-                    System.out.println("\nHEADER: " + printbytes(headerSection.toBytes()));
 
 
                     QuerySection querySection = new QuerySection(packetData);
@@ -51,7 +44,6 @@ public class Receiver {
                     headerSection.getFlags().setZ((byte) 0);
                     headerSection.getARCOUNT().set(1, (byte) 0);
 
-                    System.out.println("QUERY SECTION: " + printbytes(querySection.getRawSection()));
                     ArrayList<AnswerSection> listOfAnswers = new ArrayList<>();
                     var queryDomain = querySection.getDomainName().endsWith(".") ? querySection.getDomainName().substring(0, querySection.getDomainName().length()-1) : querySection.getDomainName();
                     var domainNames = configMap.getOrDefault(queryDomain, new ArrayList<>());
